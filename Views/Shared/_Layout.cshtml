@@ -3,13 +3,71 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - JavaScriptLearingWithMVC</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/JavaScriptLearingWithMVC.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - The Book Nook</title>
+    
+    @* <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico"> *@
+
+    <partial name="Layout/_Css" />
+
+    @RenderSection("PageHeader", required: false)
 </head>
-<body>
-    <header>
+@* <body> *@
+ <body data-sidebar="dark">
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <partial name="Layout/_Header" />
+        <partial name="Layout/_Menu" />
+
+        @* <div class="main-container"> *@
+        <div class="main-content">
+            <!-- start page title -->
+            <div class="breadcrumb-title">
+                <div class="card card-header shadow-sm">
+                    <h4 class="mb-sm-0 font-size-18 py-1">@ViewBag.PageTitle</h4>
+                </div>
+            </div>
+            <!-- end page title -->
+           @*  <main role="main" class="pb-3">
+                @RenderBody()
+            </main> *@
+
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+            <partial name="Layout/_Footer" />
+        </div>
+       @*  <div class="main-content">
+            <!-- start page title -->
+            <div class="breadcrumb-title">
+                <div class="card card-header shadow-sm">
+                    <h4 class="mb-sm-0 font-size-18 py-1">@ViewBag.PageTitle</h4>
+                </div>
+            </div>
+            <!-- end page title -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <partial name="Layout/_Footer" />
+        </div> *@
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+    @* <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JavaScriptLearingWithMVC</a>
@@ -34,16 +92,12 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    </div> *@
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - JavaScriptLearingWithMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+   @*  <partial name="Layout/_Footer" /> *@
+    <partial name="Layout/_JS" />
+   
+    @* @await RenderSectionAsync("Scripts", required: false) *@
+    @RenderSection("PageFooter", required: false)
 </body>
 </html>

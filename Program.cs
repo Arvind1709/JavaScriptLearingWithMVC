@@ -1,7 +1,15 @@
+using JavaScriptLearingWithMVC.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add URL
+builder.Services.AddHttpClient<ApiService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]); // Ensure BaseUrl is configured in appsettings.json
+});
 
 var app = builder.Build();
 
