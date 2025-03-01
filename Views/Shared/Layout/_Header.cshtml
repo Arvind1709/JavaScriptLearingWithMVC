@@ -1,4 +1,4 @@
-﻿<header id="page-topbar">
+﻿@* <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
@@ -6,11 +6,11 @@
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
                         @* <img src="~/images/govlogo.png" alt="logo" height="40"> *@
-                        <img src="~/images/booknook.png" alt="logo" height="40">
+                        @* <img src="~/images/booknook.png" alt="logo" height="40">
                     </span>
-                    <span class="logo-lg">
+                    <span class="logo-lg"> *@
                         @* <img src="~/images/logo.png" alt="logo"> *@
-                        <img src="~/images/thebooknook.png" alt="logo">
+                       @*  <img src="~/images/thebooknook.png" alt="logo">
                     </span>
                 </a>
             </div>
@@ -21,9 +21,14 @@
             </button>
         </div>
 
-        <div class="d-flex">
-
-            <div class="dropdown d-inline-block d-lg-none ms-2">
+        <div class="d-flex"> *@
+            @* @if (Context.Session.GetString("JwtToken") != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Auth" asp-action="Logout">Logout</a>
+                </li>
+            } *@
+           @*  <div class="dropdown d-inline-block d-lg-none ms-2">
                 <button type="button" class="btn header-item noti-icon waves-effect"
                         id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -53,7 +58,7 @@
                     <i class="bx bx-fullscreen"></i>
                 </button>
             </div>
-
+           
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,10 +80,10 @@
                         <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span>
                     </a>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
-</header> 
+</header>  
 
 @* <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -101,3 +106,36 @@
         </div>
     </nav>
 </header> *@
+
+
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="d-flex">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="~/images/booknook.png" alt="logo" height="40">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="~/images/thebooknook.png" alt="logo">
+                    </span>
+                </a>
+            </div>
+
+            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect"
+                    id="vertical-menu-btn">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="d-flex align-items-center">
+            @if (Context.Session.GetString("JwtToken") != null)
+            {
+                <a asp-controller="Auth" asp-action="Logout" class="btn btn-outline-light">
+                    Logout
+                </a>
+            }
+        </div>
+    </div>
+</header>

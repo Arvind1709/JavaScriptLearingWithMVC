@@ -14,8 +14,9 @@ namespace JavaScriptLearingWithMVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var users = await _apiService.GetAllAsync<UserModel>("index");
+            var users = await _apiService.GetAllAsync<UserModel>("api/Users/index");
             return View(users);
         }
+       
     }
 }

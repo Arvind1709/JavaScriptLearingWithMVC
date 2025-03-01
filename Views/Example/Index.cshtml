@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Demo Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toastr Example in MVC</title>
+
+    <!-- Include Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Toastr Notifications in ASP.NET MVC</h2>
+
+    <!-- Buttons to trigger success and error messages -->
+    <a href="@Url.Action("ShowSuccess", "Example")" class="btn btn-success">Show Success</a>
+    <a href="@Url.Action("ShowError", "Example")" class="btn btn-danger">Show Error</a>
+
+    <!-- Include jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Include Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Check if TempData contains message
+            var message = '@TempData["Message"]';
+            var messageType = '@TempData["MessageType"]';
+
+            if (message) {
+                if (messageType === 'success') {
+                    toastr.success(message);
+                } else if (messageType === 'error') {
+                    toastr.error(message);
+                } else if (messageType === 'warning') {
+                    toastr.warning(message);
+                } else if (messageType === 'info') {
+                    toastr.info(message);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
