@@ -1,0 +1,16 @@
+﻿@model BookModel
+
+<h2>Book Details</h2>
+<div>
+    <p><strong>Title:</strong> @Model.Title</p>
+    <p><strong>Author:</strong> @Model.Author</p>
+    <p><strong>Genre:</strong> @Model.Price</p>
+    <p><strong>Price:</strong> @Model.Stock</p>
+    <p><strong>Stock:</strong> @Model.Description</p>
+    <p><strong>Stock:</strong> @Model.Category</p>
+    <p><strong>Stock:</strong> @Model.CreatedAt</p>
+    
+</div>
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+

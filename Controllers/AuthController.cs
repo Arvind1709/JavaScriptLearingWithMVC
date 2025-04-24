@@ -1,5 +1,4 @@
 ﻿using JavaScriptLearingWithMVC.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -52,28 +51,29 @@ namespace JavaScriptLearingWithMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(UserModel model)
+        public async Task<IActionResult> Register(UserViewModel model)
         {
             ModelState.Remove(model.ConfirmPassword);
             if (ModelState.IsValid)
             {
-                var newUser = new UserModel
-                {
-                    Username = model.Username,
-                    Email = model.Email,
-                    Password = BCrypt.Net.BCrypt.HashPassword(model.Password), // Hash password
-                    Role = "Customer",
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    PhoneNumber = model.PhoneNumber,
-                    DateCreated = DateTime.Now,
-                    IsActive = true
-                };
+                //var newUser = new UserModel
+                //{
+                //    Username = model.Username,
+                //    Email = model.Email,
+                //    Password = BCrypt.Net.BCrypt.HashPassword(model.Password), // Hash password
+                //    //Role = "Customer",
+                //    FirstName = model.FirstName,
+                //    LastName = model.LastName,
+                //    PhoneNumber = model.PhoneNumber,
+                //    Role = JsonConvert.SerializeObject(model.Roles),
+                //    DateCreated = DateTime.Now,
+                //    IsActive = true
+                //};
                 // Ensure correct serialization
-                var json = JsonConvert.SerializeObject(newUser);
+                var json = JsonConvert.SerializeObject(model);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var jsonResponse = await _apiService.CreateAsyncHttpContent("api/Users/create", content);
-                if(jsonResponse)
+                if (jsonResponse)
                 {
                     return RedirectToAction("Login"); // Redirect to login page
                 }
